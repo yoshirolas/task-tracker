@@ -64,6 +64,11 @@ function showTaskList (state = initialState, action) {
       return newState
     }
 
+    case 'REFRESH_TASK_LIST': { 
+      const newState = [...action.payload]
+      return newState
+    }
+
     default:
       return state;
   }

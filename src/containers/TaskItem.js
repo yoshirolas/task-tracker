@@ -9,6 +9,7 @@ import Icon from 'material-ui/Icon';
 
 
 const Container = styled.li`
+  cursor: move;
   position: relative;
   width: 100%;
   margin: 10px;

@@ -16,3 +16,8 @@ export const sortTaskList = (filter) => ({
   type: 'SORT_TASK_LIST',
   payload: filter
 });
+
+export const refreshTaskList = (arr) => ({
+  type: 'REFRESH_TASK_LIST',
+  payload: arr,
+});

@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TaskItem from '../containers/TaskItem';
+import { refreshTaskList } from '../actions/appActions';
 
 import styled from 'styled-components';
+
+import Sortable from 'sortablejs';
+import arrayMove from 'array-move';
 
 
 const Container = styled.div`
@@ -23,7 +27,25 @@ const List = styled.ul`
   width: 100%;
 `;
 
+let taskItemsArr;
+
 class TaskList extends Component {
+
+  componentDidMount() {
+    taskItemsArr = this.props.tasks;
+    const dispatch = this.props.dispatch;
+    const draggableList = document.getElementById('draggableList');
+    new Sortable(draggableList, {
+      onSort: function (evt) {
+        arrayMove.mut(taskItemsArr, evt.oldIndex, evt.newIndex);
+        dispatch(refreshTaskList(taskItemsArr));
+      },
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    taskItemsArr = nextProps.tasks;
+  }
 
   createTaskList = (item) => {
     return (
@@ -50,7 +72,7 @@ class TaskList extends Component {
         <Title>
           {`Tasks to do (${ numNotComlitedTasks })`}
         </Title>
-        <List>
+        <List id="draggableList">
           { taskList }
         </List>
       </Container>
