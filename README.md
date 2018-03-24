@@ -1,6 +1,6 @@
 ### React+Redux+Material UI
 
-### [Task Tracker](https://yoshirolas.github.io/to-do-list/)
+### [Task Tracker](https://yoshirolas.github.io/task-tracker/)
 
 ## Available Scripts
 
