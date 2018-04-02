@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const config = require('./config');
@@ -10,6 +11,11 @@ db.setUpConnection();
 
 app.use(bodyParser.json());
 app.use(cors({ origin: '*' }));
+app.use('/', express.static(`${__dirname}/build`));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve(`${__dirname}/build`, 'index.html'))  
+})
 
 app.get('/tasks', function (req, res) {
   db.getTaskList().then(data => res.send(data))
@@ -28,5 +34,5 @@ app.post('/delete', function (req, res) {
 });
 
 app.listen(config.serverPort, function () {
-  console.log(`Server is listening on port ${ config.serverPort }!`);
+  console.log(`Server is run and listening on port ${ config.serverPort }!`);
 });

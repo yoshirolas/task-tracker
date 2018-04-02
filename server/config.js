@@ -1,6 +1,8 @@
+const port = process.env.PORT || 3001;
+
 const config = {
-  "serverPort": "3001",
-  "apiPrefix": "http://localhost:3001",
+  "serverPort": port,
+  "apiPrefix": `http://localhost:${ port }`,
   "db": {
     "name": "task-tracker",
     "host": "localhost",

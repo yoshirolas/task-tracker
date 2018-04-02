@@ -7,7 +7,7 @@ function setUpConnection() {
   //`mongodb://${ config.db.host }:${ config.db.port }/${ config.db.name }`
   // mongodb://guest:guest12345@ds131914.mlab.com:31914/task-traker
   mongoose.connect(`mongodb://guest:guest12345@ds131914.mlab.com:31914/task-traker`);
-  console.log('connected to DB')
+  console.log('Successfully connected to database!')
 }
 
 function getTaskList() {

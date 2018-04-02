@@ -1,8 +1,10 @@
 import axios from 'axios';
+const port = process.env.PORT || 3001;
+const apiPrefix = `http://localhost:${ port }`;
 
 
 export const asyncGetTasks = (dispatch) => {
-  axios.get('http://localhost:3001/tasks')
+  axios.get(`${ apiPrefix }/tasks`)
     .then(res => {
       const tasks = res.data;
       return dispatch({
@@ -14,7 +16,7 @@ export const asyncGetTasks = (dispatch) => {
 }
 
 export const asyncDeleteTask = (_id) => (dispatch) => {
-  axios.post('http://localhost:3001/delete', {'_id': _id})
+  axios.post(`${ apiPrefix }/delete`, {'_id': _id})
     .then(res => {
       const task = res.data;
       return dispatch({
@@ -28,7 +30,7 @@ export const asyncDeleteTask = (_id) => (dispatch) => {
 export const asyncPostTask = (data) => (dispatch) => {
   
   if (data._id) {
-    axios.put('http://localhost:3001/update', data)
+    axios.put(`${ apiPrefix }/update`, data)
       .then(res => {
         const task = res.data;
         return dispatch({
@@ -39,7 +41,7 @@ export const asyncPostTask = (data) => (dispatch) => {
       .catch(err => console.log(err))
 
   } else {
-    axios.post('http://localhost:3001/add', data)
+    axios.post(`${ apiPrefix }/add`, data)
       .then(res => {
         const task = res.data;
         return dispatch({
