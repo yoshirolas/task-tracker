@@ -1,41 +1,47 @@
-import shortid from 'shortid';
 import initialState from '../constants/initialState';
 
 
 function showTaskList (state = initialState, action) {
   switch (action.type) {
 
-    case 'DEL_TASK': { 
+    case 'GET_TASKS': {
+      return action.payload
+    }
+
+    case 'DELETE_TASK': { 
       const newState = state
-        .filter(item => item.id !== action.payload);
+        .filter(item => item._id !== action.payload._id);
 
       return newState
     }
 
-    case 'SAVE_TASK': {
+    case 'ADD_TASK': {
       let newState = [...state];
-
-      if (action.id) {
-        const taskItemPosition = newState
-          .findIndex(item => item.id === action.id);
-        newState[taskItemPosition].title = action.title;
-        newState[taskItemPosition].description = action.description;
-        newState[taskItemPosition].priority = action.priority;
-        newState[taskItemPosition].complited = action.complited;
-
-      } else {
-        const newTask = {
-          title: action.title,
-          description: action.description,
-          date: new Date(),
-          priority: action.priority,
-          complited: action.complited,
-          id: shortid.generate(),
-        }
-        newState.push(newTask);
+      const { _id, title, description, priority, complited } = action.payload;
+      const newTask = {
+        _id,
+        title,
+        description,
+        date: new Date(),
+        priority,
+        complited,
       }
+      newState.push(newTask);
 
       return newState
+    }
+
+    case 'UPDATE_TASK': {
+      let newState = [...state];
+      const { _id, title, description, priority, complited } = action.payload;
+      const taskItemPosition = newState
+        .findIndex(item => item._id === _id);
+      newState[taskItemPosition].title = title;
+      newState[taskItemPosition].description = description;
+      newState[taskItemPosition].priority = priority;
+      newState[taskItemPosition].complited = complited;
+
+      return newState;
     }
 
     case 'SORT_TASK_LIST': {
@@ -51,13 +57,19 @@ function showTaskList (state = initialState, action) {
 
       if (action.payload === 'newest') {
         return newState.sort(function(a, b) {
-          return b.date.getTime() - a.date.getTime();
+          const dateForCompareA = (new Date(a.date)).getTime();
+          const dateForCompareB = (new Date(b.date)).getTime(); 
+
+          return dateForCompareB - dateForCompareA;
         });
       }
 
       if (action.payload === 'oldest') {
         return newState.sort(function(a, b) {
-          return a.date.getTime() - b.date.getTime();
+          const dateForCompareA = (new Date(a.date)).getTime();
+          const dateForCompareB = (new Date(b.date)).getTime(); 
+
+          return dateForCompareA - dateForCompareB;
         });
       }
 

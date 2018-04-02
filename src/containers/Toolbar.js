@@ -85,11 +85,17 @@ class Toolbar extends Component {
               Oldest first
             </MenuItem>
           </Menu>
-          <Button color="default">Login</Button>
+          <Button 
+            color="default"
+            onClick={ this.handleAsyncGetTask }
+          >
+            Login
+          </Button>
         </Content>
       </Container>
     );
   }
 }
+
 
 export default connect()(Toolbar);

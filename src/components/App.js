@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import TaskField from './TaskField';
 import Toolbar from '../containers/Toolbar';
+import { asyncGetTasks } from '../actions/appActions';
 
 import CssBaseline from 'material-ui/CssBaseline';
 
 
 class App extends Component {
+
+  componentDidMount() {
+    this.props.dispatch(asyncGetTasks)
+  }
+
   render() {
     return (
       <div>
@@ -17,4 +24,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect()(App);

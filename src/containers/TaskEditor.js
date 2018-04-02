@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { saveTask } from '../actions/appActions';
+import { asyncPostTask } from '../actions/appActions';
 
 import styled from 'styled-components';
 import Button from 'material-ui/Button';
@@ -46,11 +46,12 @@ class TaskEditor extends React.Component {
   handleClickOpen = () => {
     this.setState({ 
       open: true,
-      id: this.props.id ? this.props.id : null,
+      _id: this.props._id ? this.props._id : null,
       title: this.props.title ? this.props.title : '',
       description: this.props.description ? this.props.description : '',
       priority: this.props.priority ? this.props.priority : '',
       complited: this.props.complited ? this.props.complited : false,
+      date: this.props.date ? this.props.date : (new Date()).toLocaleDateString()
     });
   };
 
@@ -59,11 +60,8 @@ class TaskEditor extends React.Component {
   };
 
   handleSaveTask = () => {
-    const { id, title, description, priority, complited } = this.state;
     this.handleCloseEditor();
-    this.props.dispatch(
-      saveTask(id, title, description, priority, complited)
-    );
+    this.props.dispatch(asyncPostTask(this.state))
   };
 
 
@@ -127,11 +125,7 @@ class TaskEditor extends React.Component {
           </AppBar>
           <Form>
             <Input
-              value={ 
-                this.props.date 
-                ? this.props.date 
-                : (new Date()).toLocaleDateString() 
-              }
+              value={ this.state.date }
               disabled
             />
             <TextField

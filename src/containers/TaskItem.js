@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TaskEditor from '../containers/TaskEditor';
-import { deleteTask } from '../actions/appActions';
+import { asyncDeleteTask } from '../actions/appActions';
 
 import styled from 'styled-components';
 import IconButton from 'material-ui/IconButton';
@@ -83,7 +83,7 @@ const TextPriority = styled.span`
 class TaskItem extends Component {
 
   handleDelTask = () => {
-    this.props.dispatch(deleteTask(this.props.id));
+    this.props.dispatch(asyncDeleteTask(this.props._id));
   }
 
   render() {
@@ -91,7 +91,7 @@ class TaskItem extends Component {
       <Container>
         <EditBtnContent>
           <TaskEditor 
-            id={ this.props.id }
+            _id={ this.props._id }
             title={ this.props.title }
             description={ this.props.description }
             date={ this.props.date } 

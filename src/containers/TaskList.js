@@ -50,13 +50,13 @@ class TaskList extends Component {
   createTaskList = (item) => {
     return (
       <TaskItem
-        key={ item.id }   
+        key={ item._id }   
         title={ item.title }
         description={ item.description }
-        date={ item.date.toLocaleDateString()}
+        date={ (new Date(item.date)).toLocaleDateString() }
         priority={ item.priority }
         complited={ item.complited }
-        id={ item.id }
+        _id={ item._id }
       />
     );
   }

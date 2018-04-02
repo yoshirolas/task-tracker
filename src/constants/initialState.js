@@ -8,7 +8,7 @@ const initialState = [
     date: new Date('Jun 12 1988'),
     priority: 'hight',
     complited: true,
-    id: shortid.generate(),
+    _id: shortid.generate(),
   },
   {
     title: 'Second task',
@@ -16,7 +16,7 @@ const initialState = [
     date: new Date('Jun 13 1988'),
     priority: 'hight',
     complited: false,
-    id: shortid.generate(),
+    _id: shortid.generate(),
   },
   {
     title: 'Front-end',
@@ -24,15 +24,15 @@ const initialState = [
     date: new Date('Aug 18 2017'),
     priority: 'hight',
     complited: false,
-    id: shortid.generate(),
+    _id: shortid.generate(),
   },
   {
     title: 'Snowboarding',
-    description: 'Practice new flat trics',
+    description: 'Practice new flat tricks',
     date: new Date('Feb 7 2018'),
     priority: 'low',
     complited: true,
-    id: shortid.generate(),
+    _id: shortid.generate(),
   },
   {
     title: 'Task tracker',
@@ -40,7 +40,7 @@ const initialState = [
     date: new Date('Mar 20 2018'),
     priority: 'hight',
     complited: false,
-    id: shortid.generate(),
+    _id: shortid.generate(),
   },
 ];
 

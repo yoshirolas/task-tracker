@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux'
+import { createStore, applyMiddleware  } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+
 import appReducer from './reducers/appReducer'
 import './index.css';
 import App from './components/App';
@@ -9,7 +11,7 @@ import App from './components/App';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 
-const store = createStore(appReducer, composeWithDevTools());
+const store = createStore(appReducer, composeWithDevTools(applyMiddleware(thunk)));
 // window.store = store;
 
 ReactDOM.render(
