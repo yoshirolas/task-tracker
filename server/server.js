@@ -34,5 +34,5 @@ app.post('/delete', function (req, res) {
 });
 
 app.listen(config.serverPort, function () {
-  console.log(`Server is run and listening on port ${ config.serverPort }!`);
+  console.log(`Server is run and listening on port ${ this.address().port } in ${ app.settings.env } mode`);
 });

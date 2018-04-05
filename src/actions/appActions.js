@@ -1,9 +1,8 @@
 import axios from 'axios';
-const port = process.env.PORT || 3001;
-const apiPrefix = `http://localhost:${ port }`;
-
+import apiPrefix from '../services/getApiPrefix';
 
 export const asyncGetTasks = (dispatch) => {
+  console.log(apiPrefix);
   axios.get(`${ apiPrefix }/tasks`)
     .then(res => {
       const tasks = res.data;
