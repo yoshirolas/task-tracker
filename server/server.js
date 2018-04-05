@@ -11,11 +11,11 @@ db.setUpConnection();
 
 app.use(bodyParser.json());
 app.use(cors({ origin: '*' }));
-app.use('/', express.static(`${__dirname}/build`));
+// app.use('/', express.static(`${__dirname}/build`));
 
-app.get('/', (req, res) => {
-  res.sendFile(path.resolve(`${__dirname}/build`, 'index.html'))  
-})
+// app.get('/', (req, res) => {
+//   res.sendFile(path.resolve(`${__dirname}/build`, 'index.html'))  
+// })
 
 app.get('/tasks', function (req, res) {
   db.getTaskList().then(data => res.send(data))
