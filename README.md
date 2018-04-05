@@ -1,8 +1,12 @@
 ## React+Redux+Material UI+Node JS+MongoDB
 
-## To run app
+## To run app in the browser:
 
-### clone this repository
+[https://task-tracker-server.herokuapp.com/](https://task-tracker-server.herokuapp.com/) 
+
+## To run app locally:
+
+### `clone this repository`
 
 ### `npm intall`
 
